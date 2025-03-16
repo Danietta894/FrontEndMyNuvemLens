@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NuvemLens - Perfil</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e6f2ff;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #4A90E2;
+        }
+
+        .navbar-brand, .nav-link {
+            color: #fff !important;
+            font-weight: bold;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+            color: #d0e7f9 !important;
+        }
+
+        /* Perfil */
+        .profile-header {
+            text-align: center;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .profile-header img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid #4A90E2;
+            margin-bottom: 10px;
+        }
+
+        .profile-header h1 {
+            font-size: 1.8rem;
+            margin: 10px 0;
+        }
+
+        .profile-header p {
+            font-style: italic;
+            color: #555;
+            font-size: 1rem;
+        }
+
+        .profile-header button {
+            background-color: #4A90E2;
+            color: #fff;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .profile-header button:hover {
+            background-color: #357ABD;
+        }
+
+        /* Informações Pessoais */
+        .info-section {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .info-section h3 {
+            color: #4A90E2;
+            font-size: 1.2rem;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 10px;
+        }
+
+        .info-section p {
+            margin: 5px 0;
+            font-size: 0.9rem;
+        }
+
+        .info-section span {
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* Galeria de Fotos */
+        .photos-section {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .photos-section h3 {
+            color: #4A90E2;
+            font-size: 1.2rem;
+        }
+
+        .photos-section img {
+            width: 300px;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        /* Botões */
+        .buttons-section {
+            text-align: center;
+            margin-top: 20px; 
+            display: flex;
+            flex-flow: row;
+            justify-content: center;
+        }
+
+        .buttons-section a {
+            margin: 10px;
+            padding: 10px 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .buttons-section .btn-gallery {
+            background-color: #4A90E2;
+        }
+
+        .buttons-section .btn-upload {
+            background-color: #28a745;
+        }
+
+        .buttons-section .btn-edit {
+            background-color: #ffc107;
+        }
+
+        .buttons-section a:hover {
+            opacity: 0.9;
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: #4A90E2;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">NuvemLens</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="pag.html">Galeria</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Compras</a></li>
+                <li class="nav-item"><a class="nav-link" href="#configuracoes">Configurações</a></li>
+                <li class="nav-item"><button class="btn btn-danger ms-2" onclick="window.location.href='logout.html'" aria-label="Logout">Logout</button></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Perfil -->
+<section class="container profile-header">
+    <img src="perfis/dani.jpg" alt="Foto de Perfil">
+    <h1>Daniella Nunes</h1>
+    <p>"Curiosa, apaixonada por meteorologia, amante da natureza e sempre com o olhar para o céu!"</p>
+    <button>Editar Perfil</button>
+</section>
+
+<!-- Informações Pessoais -->
+<section class="container info-section">
+    <h3>Informações Pessoais</h3>
+    <p><span>Email:</span> daniella.etarionsn@gmail.com</p>
+    <p><span>Interesses:</span> Observação de nuvens, classificação de nuvens, fotografia da natureza, meteorologia</p>
+    <p><span>Projetos:</span> Análise de Padrões de Tempestades</p>
+    <p><span>Localização:</span> Cotia, São Paulo</p>
+    <p><span>Estilo de Perfil:</span> Introvertida, prefere legendas nas músicas de abertura de animes em vez de traduções.</p>
+</section>
+
+<!-- Fotos Enviadas -->
+<section class="container photos-section">
+    <h3>Fotos Enviadas</h3>
+    <div class="row">
+        <div class="col-md-4">
+            <img src="nuvens/nuvem4.jpeg" alt="Foto 1">
+        </div>
+        <div class="col-md-4">
+            <img src="nuvens/nuvem5.jpg" alt="Foto 2">
+        </div>
+        <div class="col-md-4">
+            <img src="nuvens/nuvem6.jpeg" alt="Foto 3">
+        </div>
+    </div>
+</section>
+
+<!-- Botões de Ação -->
+<section class="container buttons-section">
+    <a href="pag.html" class="btn-gallery">Ver Galeria</a>
+    <a href="upload.html" class="btn-upload">Fazer Upload</a>
+    <a href="#edit" class="btn-edit">Editar Perfil</a>
+</section>
+
+<!-- Rodapé -->
+<footer>
+    © 2024 NuvemLens. Todos os direitos reservados.
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
+

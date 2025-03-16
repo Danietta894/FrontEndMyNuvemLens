@@ -1,0 +1,37 @@
+.text-primary {
+    color: #4A90E2; /* mesma cor das outras seções */
+    font-weight: bold;
+}
+.btn-primary {
+    background-color: #4A90E2;
+    border: none;
+    transition: background-color 0.3s ease;
+    border-radius: 5px;
+}
+
+.btn-primary:hover {
+    background-color: #357ABD;
+}
+.contact-form {
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+footer {
+    background-color: #4A90E2;
+    color: white;
+    padding: 20px 0;
+    font-size: 0.9rem;
+}
+
+footer a {
+    color: #ffffff;
+    text-decoration: underline;
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #d0e7f9;
+    text-decoration: none;
+}

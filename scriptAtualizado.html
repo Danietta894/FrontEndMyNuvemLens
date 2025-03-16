@@ -1,0 +1,104 @@
+-- criação do banco de dados
+create database nuvemlens;
+use nuvemlens;
+
+-- tabela de localização
+create table localizacao (
+    idlocalizacao int auto_increment primary key,
+    cidade varchar(45),
+    estado varchar(45),
+    pais varchar(45)
+);
+
+-- tabela de previsão do clima
+create table previsaoclima (
+    idclima int auto_increment primary key,
+    data date,
+    temperatura float,
+    fk_localizacao int,
+    foreign key (fk_localizacao) references localizacao(idlocalizacao)
+);
+
+-- tabela de usuários
+create table usuarios (
+    id int auto_increment primary key,
+    nome varchar(100) not null,
+    email varchar(100) not null unique,
+    senha varchar(255) not null,
+    biografia text,
+    localizacao varchar(100),
+    estilo_perfil varchar(100),
+    data_criacao timestamp default current_timestamp
+);
+
+-- tabela de categoria
+create table categoria (
+    idcategoria int auto_increment primary key,
+    nome varchar(45),
+    descricao text
+);
+
+-- tabela de fotos enviadas
+create table fotos (
+    id int auto_increment primary key,
+    usuario_id int not null,
+    url varchar(255) not null,
+    descricao text,
+    data_envio timestamp default current_timestamp,
+    fk_idlocalizacao int,
+    fk_idclima int,
+    foreign key (usuario_id) references usuarios(id) on delete cascade,
+    foreign key (fk_idlocalizacao) references localizacao(idlocalizacao),
+    foreign key (fk_idclima) references previsaoclima(idclima)
+);
+
+-- tabela de compras realizadas
+create table compras (
+    id int auto_increment primary key,
+    usuario_id int not null,
+    produto_nome varchar(100) not null,
+    quantidade int not null,
+    preco decimal(10, 2) not null,
+    data_compra timestamp default current_timestamp,
+    foreign key (usuario_id) references usuarios(id) on delete cascade
+);
+
+-- tabela de comentário
+create table comentario (
+    idcomentario int auto_increment primary key,
+    texto text,
+    data date,
+    fk_idusuario int,
+    fk_idfoto int,
+    foreign key (fk_idusuario) references usuarios(id),
+    foreign key (fk_idfoto) references fotos(id)
+);
+
+-- inserção de dados de exemplo para localizacao
+insert into localizacao (cidade, estado, pais) values 
+('monte fuji', 'shizuoka', 'japão');
+
+-- inserção de dados de exemplo para previsaoclima
+insert into previsaoclima (data, temperatura, fk_localizacao) values
+('2024-11-15', 20.5, 1);  -- considerando que o idlocalizacao gerado será 1 para 'monte fuji'
+
+-- inserção de dados de exemplo para usuarios
+insert into usuarios (nome, email, senha, biografia, localizacao, estilo_perfil) values 
+('danietta órion', 'daniella.etaorionisn@gmail.com', 'senha123', 'curiosa, apaixonada por meteorologia e amante da natureza.', 'monte fuji', 'introvertida, prefere legendas nas músicas de abertura de animes em vez de traduções.');
+
+-- inserção de dados de exemplo para fotos
+insert into fotos (usuario_id, url, descricao, fk_idlocalizacao, fk_idclima) values 
+(1, 'https://exemplo.com/foto1.jpg', 'cumulonimbus com formação interessante.', 1, 1),
+(1, 'https://exemplo.com/foto2.jpg', 'pôr do sol com nuvens altostratus.', 1, 1);
+
+-- inserção de dados de exemplo para compras
+insert into compras (usuario_id, produto_nome, quantidade, preco) values 
+(1, 'caneca nuvemplens', 2, 29.90),
+(1, 'poster de nuvens', 1, 49.90);
+
+-- verificação de tabelas criadas
+show tables;
+
+-- consulta para verificar os dados inseridos na tabela de usuários
+select * from usuarios;
+

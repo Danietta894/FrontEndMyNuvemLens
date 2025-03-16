@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - NuvemLens</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background: linear-gradient(to bottom, #d0e7f9, #f9fcff);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+
+        .login-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 100%;
+            max-width: 350px;
+        }
+
+        .login-logo img {
+            width: 120px;
+            height: 90px;
+            margin-bottom: 15px;
+        }
+
+        .btn-social {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            margin-bottom: 8px;
+            font-size: 14px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: white;
+        }
+
+        .btn-social img {
+            width: 18px;
+            margin-right: 8px;
+        }
+
+        .btn-google {
+            border-color: #ccc;
+        }
+
+        .btn-facebook {
+            border-color: #1877f2;
+            color: white;
+            background-color: #1877f2;
+        }
+
+        .btn-apple {
+            border-color: #000;
+            color: white;
+            background-color: #000;
+        }
+
+        .divider {
+            margin: 15px 0;
+            text-align: center;
+            font-size: 12px;
+            color: #aaa;
+        }
+
+        .divider::before, .divider::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid #ccc;
+            margin: 0 10px;
+        }
+
+        .form-control {
+            font-size: 14px;
+        }
+
+        .btn-primary {
+            background-color: #4A90E2;
+            border: none;
+            width: 100%;
+            font-size: 14px;
+            padding: 8px;
+        }
+
+        .btn-primary:hover {
+            background-color: #357ABD;
+        }
+
+        .forgot-password {
+            color: #4A90E2;
+            font-size: 12px;
+            display: block;
+            margin-top: 10px;
+        }
+
+        .info-section {
+            text-align: left;
+            margin-top: 15px;
+            font-size: 12px;
+            color: #555;
+        }
+
+        .info-section ul {
+            padding-left: 20px;
+        }
+
+        .info-section ul li {
+            margin-bottom: 8px;
+        }
+
+        .info-section a {
+            color: #4A90E2;
+            text-decoration: none;
+        }
+
+        .info-section a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            background-color: #4A90E2;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            width: 100%;
+            position: relative;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-logo">
+            <img src="nuvens/logo1 (1).jpg" alt="NuvemLens Logo">
+        </div>
+        <h5>Bem-vindo(a) à NuvemLens</h5>
+        <p style="font-size: 14px;">Faça login para acessar ou cadastre-se para começar sua jornada com as nuvens!</p>
+
+        <!-- Botões de Login Social -->
+        <button class="btn btn-social btn-google">
+            <img src="nuvens/Google__G__logo.svg.png" alt="Google"> Entrar com Google
+        </button>
+        <button class="btn btn-social btn-facebook">
+            <img src="nuvens/Facebook_logo_(square).png" alt="Facebook"> Entrar com Facebook
+        </button>
+        <button class="btn btn-social btn-apple">
+            <img src="nuvens/apple.jpg" alt="Apple"> Entrar com Apple
+        </button>
+
+        <div class="divider">ou</div>
+
+        <!-- Tabs de Login e Cadastro -->
+        <ul class="nav nav-tabs justify-content-center mb-2">
+            <li class="nav-item">
+                <a class="nav-link active" href="#login" data-bs-toggle="tab" style="font-size: 14px;">Login</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#signup" data-bs-toggle="tab" style="font-size: 14px;">Cadastro</a>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <!-- Login -->
+            <div class="tab-pane fade show active" id="login">
+                <form>
+                    <div class="mb-2">
+                        <input type="email" class="form-control" placeholder="Email" required>
+                    </div>
+                    <div class="mb-2">
+                        <input type="password" class="form-control" placeholder="Senha" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Entrar</button>
+                    <a href="esquecisenha.html" class="forgot-password">Esqueci Minha Senha</a>
+                </form>
+            </div>
+
+            <!-- Cadastro -->
+            <div class="tab-pane fade" id="signup">
+                <form>
+                    <div class="mb-2">
+                        <input type="text" class="form-control" placeholder="Nome Completo" required>
+                    </div>
+                    <div class="mb-2">
+                        <input type="email" class="form-control" placeholder="Email" required>
+                    </div>
+                    <div class="mb-2">
+                        <input type="password" class="form-control" placeholder="Senha" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Cadastrar</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="info-section">
+            <h6>Por que usar o NuvemLens?</h6>
+            <ul>
+                <li>Compartilhe suas fotos de nuvens com a comunidade.</li>
+                <li>Explore padrões meteorológicos únicos.</li>
+                <li>Conecte-se com outros entusiastas do céu.</li>
+            </ul>
+            <p>Ao entrar, você concorda com nossos <a href="termos.html">Termos de Serviço</a> e <a href="politica.html">Política de Privacidade</a>.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 NuvemLens. Todos os direitos reservados.</p>
+        <p>Siga-nos nas redes sociais: 
+            <a href="#">Facebook</a> | 
+            <a href="#">Twitter</a> | 
+            <a href="#">Instagram</a>
+        </p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
