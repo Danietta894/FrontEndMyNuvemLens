@@ -189,7 +189,7 @@
                     <div class="mb-2">
                         <input type="password" class="form-control" placeholder="Senha" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Entrar</button>
+                    <button type="submit" id="logarbtn" class="btn btn-primary">Entrar</button>
                     <a href="esquecisenha.html" class="forgot-password">Esqueci Minha Senha</a>
                 </form>
             </div>
@@ -232,5 +232,23 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+     document.getElementById("logarbtn").onclick = async function (event) {
+        event.preventDefault();
+        const email = document.querySelector("input[type=email]").value;
+        const senha = document.querySelector("input[type=password]").value;
+        
+        const resposta = await  fetch("HTTP://localhost:3000/api/auth/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ email, senha })
+        });
+        const dados = await resposta.text();
+
+            alert(dados);
+    };
+    </script>
 </body>
 </html>
