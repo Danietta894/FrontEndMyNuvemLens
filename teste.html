@@ -7,9 +7,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <link rel="stylesheet" href="inicial.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body {
@@ -18,10 +15,17 @@
             color: #333;
         }
         .navbar {
-            background-color:rgb(12 84 191) !important;;
+            background-color: rgb(12 84 191) !important;
         }
         .navbar-brand, .nav-link {
             color: white !important;
+        }
+        .btn-login {
+            background-color: #1e90ff;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
         }
         .footer {
             background-color: rgb(12 84 191);
@@ -38,9 +42,19 @@
         .gallery img:hover {
             transform: scale(1.05);
         }
+        .card:hover {
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transform: scale(1.02);
+            transition: 0.3s;
+        }
+        @media (max-width: 768px) {
+            .depoimentos-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
     </style>
 </head>
-
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
@@ -50,14 +64,14 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html"onclick="window.location.href='pag.html'">Inicio</a></li>
-                    <li class="nav-item"><a class="nav-link" href="sobre.html">Sobre</a></li>
-                    <li class="nav-item"><a class="nav-link" href="index.html">Galeria</a></li>
-                    <li class="nav-item"><a class="nav-link" href="catalogo.html"onclick="window.location.href='catalogo.html'">Catálogo</a></li>
-                    <li class="nav-item"><a class="nav-link" href='upload.html'>Upload de Imagens</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#contato" >Contato</a></li>
-                    <li class="nav-item"><a class="nav-link" href="perfil.html"onclick="window.location.href='perfil.html'">Meu Perfil</a></li>
-                    <li class="nav-item"><button class="btn btn-light ms-2"onclick="window.location.href='login.html'">Login</button></li>
+                    <li class="nav-item"><a class="nav-link" href="pag.html">🏠 Início</a></li>
+                    <li class="nav-item"><a class="nav-link" href="sobre.html">🌤 Sobre</a></li>
+                    <li class="nav-item"><a class="nav-link" href="index.html">🖼 Galeria</a></li>
+                    <li class="nav-item"><a class="nav-link" href="catalogo.html">📚 Catálogo</a></li>
+                    <li class="nav-item"><a class="nav-link" href="upload.html">📷 Upload de Imagens</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contato">📩 Contato</a></li>
+                    <li class="nav-item"><a class="nav-link" href="perfil.html">👤 Meu Perfil</a></li>
+                    <li class="nav-item"><button class="btn btn-login ms-2" onclick="window.location.href='login.html'">Login</button></li>
                 </ul>
             </div>
         </div>
@@ -269,8 +283,5 @@
              .catch(error => console.error('Erro ao obter a previsão do tempo:', error));
         });
     </script>
-    
 </body>
 </html>
-
-    
