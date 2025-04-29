@@ -44,7 +44,9 @@ body {
   transition: transform 0.3s, box-shadow 0.3s;
   margin-bottom: 30px;
 }
-
+.gallery-card .badge{
+  color:#2c7fdf;
+}
 .gallery-card:hover {
   transform: scale(1.02);
   box-shadow: 0 8px 24px rgba(0,0,0,0.1);
@@ -169,7 +171,7 @@ body {
 
 /* ===== Seção Sobre ===== */
 section.container.my-5,
-section, .card, form, footer {
+section, .card, form {
   background-color: #fff;
   border-radius: 15px;
   padding: 30px;
@@ -248,7 +250,7 @@ button {
 
 /* ===== Footer ===== */
 footer {
-  background-color: #4A90E2;
+  background-color: rgb(74, 144, 226);
   color: white;
   text-align: center;
   padding: 20px;
@@ -260,4 +262,69 @@ footer a {
   margin: 0 10px;
 }
 
+.formestreito{
+  max-width: 600px;
+}
+.container-transparent{
+  background-color: rgba(255, 255, 255, 0)!important;
+  box-shadow: none!important;
+}
 
+.navbar {
+  background-color: rgb(74, 144, 226);
+  padding: 15px 40px;
+  color: white;
+}
+
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 1.3rem;
+  margin: 0;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 25px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.nav-links li a:hover {
+  color: #cce4ff;
+}
+
+.icon-actions {
+  gap: 10px;
+}
+
+.icon-button {
+  background: #fff;
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  border-radius: 16px;
+  padding: 12px;
+  font-size: 20px;
+  color: #3b82f6;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.icon-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+  background-color: #f0f4ff;
+}

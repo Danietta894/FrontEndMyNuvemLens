@@ -39,26 +39,6 @@ export default function Sobre() {
 
   return (
     <div>
-      <link rel="stylesheet" href="/src/App.css"/>
-      <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div className="container">
-          <a className="navbar-brand" href="#">My NuvemLens</a>
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav ms-auto">
-              <li className="nav-item"><a className="nav-link" href="/">Início</a></li>
-              <li className="nav-item"><a className="nav-link" href="/sobre">Sobre</a></li>
-              <li className="nav-item"><a className="nav-link" href="/catalogo">Catálogo</a></li>
-              <li className="nav-item"><a className="nav-link" href="/upload">Upload de Imagens</a></li>
-              <li className="nav-item"><a className="nav-link" href="#contato">Contato</a></li>
-              <li className="nav-item"><a className="nav-link" href="/perfil">Meu Perfil</a></li>
-              <li className="nav-item"><button className="btn btn-light ms-2" onClick={() => window.location.href='/login'}>Login</button></li>
-            </ul>
-          </div>
-        </div>
-      </nav>
 
       <section className="container my-5">
         <h2>Sobre Nós</h2>
@@ -81,9 +61,10 @@ export default function Sobre() {
         </div>
       </div>
 
-      <section className="container my-5">
+      <section className="container max-width-600 container-transparent">
+      
         <h2>Upload de Imagens</h2>
-        <form className="form-container" encType="multipart/form-data">
+        <form className="form-container formestreito max-width-600" encType="multipart/form-data">
           <div className="mb-3">
             <label htmlFor="imageFile" className="form-label">Selecione uma Imagem</label>
             <input type="file" className="form-control" id="imageFile" accept=".jpg, .jpeg, .png" required />
@@ -107,9 +88,9 @@ export default function Sobre() {
         </form>
       </section>
 
-      <section className="container my-5" id="contato">
+      <section className="container my-5 container-transparent" id="contato">
         <h2>Fale Conosco</h2>
-        <form className="form-container">
+        <form className="form-container formestreito">
           <div className="mb-3">
             <label htmlFor="nome" className="form-label">Nome</label>
             <input type="text" className="form-control" id="nome" required />
@@ -125,17 +106,6 @@ export default function Sobre() {
           <button type="submit" className="btn btn-primary">Enviar</button>
         </form>
       </section>
-
-      <footer className="text-center mt-4 py-4" style={{ backgroundColor: '#4A90E2', color: '#fff' }}>
-        <p>© 2024 My NuvemLens. Todos os direitos reservados.</p>
-        <div className="mb-2">
-          <a href="#" className="text-white me-3"><i className="fab fa-facebook-f"></i></a>
-          <a href="#" className="text-white me-3"><i className="fab fa-twitter"></i></a>
-          <a href="#" className="text-white"><i className="fab fa-instagram"></i></a>
-        </div>
-        <small>Siga-nos nas redes sociais</small>
-      </footer>
-      <div className="text-center mt-2">{weather}</div>
     </div>
   );
 }
