@@ -13,16 +13,20 @@ const ModeradorPerfil = () => {
       return;
     }
 
-    fetch("http://localhost:3000/api/moderador/perfil", {
+    fetch("http://localhost:3000/api/usuarios/eu", {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     })
-      .then((res) => {
+      .then(async (res) => {
         if (!res.ok) throw new Error("Falha ao carregar perfil do moderador");
-        return res.json();
+
+        const data = await res.json();
+
+        setModerador(data);
+
+        if (data.perfil_id != 4) window.location.href = "/perfilUsuario";
       })
-      .then((data) => setModerador(data))
       .catch((err) => setErro(err.message));
   }, []);
 
@@ -66,30 +70,23 @@ const ModeradorPerfil = () => {
           />
           <h2>{moderador.nome}</h2>
           <p style={{ fontStyle: "italic", color: "#555" }}>{moderador.bio}</p>
-          <button className="btn btn-primary">Editar Perfil</button>
+          <button
+            className="btn btn-primary"
+            onClick={() => (window.location.href = "/editarperfil")}
+          >
+            Editar Perfil
+          </button>
         </section>
 
         <section className="bg-white mt-4 p-4 rounded shadow">
           <h3 className="text-primary">Permissões</h3>
-          <ul>
-            {moderador.permissoes.map((p, i) => (
-              <li key={i}>{p}</li>
-            ))}
-          </ul>
+          
         </section>
 
         <section className="bg-white mt-4 p-4 rounded shadow">
           <h3 className="text-primary">Últimas Atividades</h3>
           <div className="d-flex gap-3 flex-wrap">
-            {moderador.fotos.map((foto, i) => (
-              <img
-                key={i}
-                src={foto.url}
-                alt={`Atividade ${i + 1}`}
-                className="img-thumbnail"
-                style={{ width: 200, borderRadius: 10 }}
-              />
-            ))}
+           
           </div>
         </section>
       </main>

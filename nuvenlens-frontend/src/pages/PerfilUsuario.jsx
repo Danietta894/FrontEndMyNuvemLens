@@ -17,22 +17,24 @@ const Perfil = () => {
       }
 
       try {
-        const resposta = await fetch(
-          "http://localhost:3000/api/perfilusuario",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const resposta = await fetch("http://localhost:3000/api/usuarios/eu", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
 
         if (!resposta.ok) {
           throw new Error("Não autorizado");
         }
 
         const dados = await resposta.json();
-        setUsuario(dados.usuario);
-        setFotos(dados.fotos || []);
+
+        if (dados.perfil_id == 1) window.location.href = "/administrador";
+
+        if (dados.perfil_id == 4) window.location.href = "/moderador";
+
+        setUsuario(dados);
+        // setFotos(dados.fotos || []);
       } catch (error) {
         console.error("Erro ao buscar perfil:", error);
         navigate("/login"); // Qualquer erro, redireciona
@@ -64,7 +66,7 @@ const Perfil = () => {
         <p>
           <em>{usuario.bio || "Sem descrição pessoal."}</em>
         </p>
-        <Link to="/perfil/editar" className="btn btn-warning text-white">
+        <Link to="/editarperfil" className="btn btn-warning text-white">
           Editar Perfil
         </Link>
       </section>
@@ -85,10 +87,6 @@ const Perfil = () => {
         </p>
         <p>
           <strong>Localização:</strong> {usuario.localizacao || "Não informada"}
-        </p>
-        <p>
-          <strong>Estilo de Perfil:</strong>{" "}
-          {usuario.estiloPerfil || "Não informado"}
         </p>
       </section>
 

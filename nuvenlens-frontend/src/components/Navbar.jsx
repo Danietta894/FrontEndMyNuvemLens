@@ -44,6 +44,13 @@ function Navbar() {
                 Upload de Imagens
               </a>
             </li>
+             {isLoggedIn ? (
+              <li className="nav-item">
+                <a className="nav-link" href="/perfilUsuario">
+                  Meu Perfil
+                </a>
+              </li>
+            ) : null} 
             <li className="nav-item">
               {isLoggedIn ? (
                 <button className="btn btn-danger" onClick={handleLogout}>

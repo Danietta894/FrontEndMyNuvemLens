@@ -32,13 +32,7 @@ const Login = () => {
         localStorage.setItem("token", dados.token);
         setSucessoLogin(dados.message || "Login bem-sucedido!");
 
-        let proximaPagina = "/perfilUsuario";
-
-        if (dados.perfil_id === 4) proximaPagina = "/moderador";
-
-        if (dados.perfil_id === 1) proximaPagina = "/moderador";
-
-        window.location.href = proximaPagina;
+        window.location.href = "/perfilUsuario";
       } else {
         setErroLogin(dados.error || "Erro ao fazer login. Tente novamente.");
         if (resposta.status === 401) {

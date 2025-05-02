@@ -14,29 +14,39 @@ export default function Card({
         <div className="card-body">
           <h5 className="card-title">{foto.titulo}</h5>
           <p className="card-text">{foto.descricao}</p>
-          <div class="category-description">
+          <div className="category-description">
             Esta imagem mostra um exemplo de:
           </div>
-          <div class="category-tags">
+          <div className="category-tags">
             <a href="/">{foto.tipo}</a>
-            <p class="mb-0">{foto.local}</p>
-            <p class="mb-0">{foto.data}</p>
+            <p className="mb-0">{foto.local}</p>
+            <p className="mb-0">{foto.data}</p>
           </div>
+
           <div className="d-flex justify-content-around mt-3 icon-actions">
             <button className="icon-button" title="Curtir">
               <FiHeart />
               {curtidas && <span className="badge">{curtidas}</span>}
             </button>
-            <button className="icon-button" title="Comentar">
+
+            <button
+              className="icon-button"
+              title="Comentar"
+              onClick={() => {
+                window.location.href = `/comentario/${foto.id}`;
+              }}
+            >
               <FiMessageCircle />
               {comentarios && <span className="badge">{comentarios}</span>}
             </button>
+
             <button className="icon-button" title="Compartilhar">
               <FiSend />
               {compartilhamentos && (
                 <span className="badge">{compartilhamentos}</span>
               )}
             </button>
+
             {!ocultardenuncias && (
               <button className="icon-button" title="Ocultar Denúncias">
                 <FiFlag />
