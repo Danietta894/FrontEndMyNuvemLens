@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 const ModeradorPerfil = () => {
   const [moderador, setModerador] = useState(null);
   const [erro, setErro] = useState(null);
+  const [atividades, setAtividades] = useState([]);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -12,6 +13,14 @@ const ModeradorPerfil = () => {
       );
       return;
     }
+    fetch(`http://localhost:3000/api/moderador/atividades`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+      .then((res) => res.json())
+      .then((data) => setAtividades(data))
+      .catch((err) => console.error("Erro ao buscar atividades:", err));
+
+    
 
     fetch("http://localhost:3000/api/usuarios/eu", {
       headers: {
@@ -47,7 +56,7 @@ const ModeradorPerfil = () => {
           <a href="/galeria" style={styles.link}>
             Galeria
           </a>
-          <a href="/validacoes" style={styles.link}>
+          <a href="/validacao" style={styles.link}>
             Validações
           </a>
           <a href="/denuncias" style={styles.link}>
@@ -79,15 +88,44 @@ const ModeradorPerfil = () => {
         </section>
 
         <section className="bg-white mt-4 p-4 rounded shadow">
-          <h3 className="text-primary">Permissões</h3>
-          
-        </section>
-
-        <section className="bg-white mt-4 p-4 rounded shadow">
           <h3 className="text-primary">Últimas Atividades</h3>
-          <div className="d-flex gap-3 flex-wrap">
-           
-          </div>
+          <p>Aqui estão algumas das suas últimas atividades como moderador:</p>
+          <ul class="atividades">
+            <li>
+              ✔️ Aprovou a imagem ID #241{" "}
+              <span class="data">em 14/05/2025 16:21</span>
+            </li>
+            <li>
+              🚫 Removeu um comentário ofensivo{" "}
+              <span class="data">em 13/05/2025</span>
+            </li>
+          </ul>
+
+          <ul className="list-group list-group-flush">
+            {atividades.map((atv) => (
+              <li
+                key={atv.id}
+                className="list-group-item d-flex align-items-center"
+              >
+                <i className={`${atv.icone} me-2 text-secondary`}></i>
+                <a href={atv.link} className="text-decoration-none">
+                  {atv.texto}
+                </a>
+              </li>
+            ))}
+          </ul>
+
+          <section className="bg-white mt-4 p-4 rounded shadow">
+            <h3 className="text-primary">Permissões</h3>
+
+            <ul>
+              <li>✅ Pode aprovar ou recusar imagens</li>
+              <li>🗨️ Pode moderar comentários</li>
+              <li>🚨 Pode acessar denúncias</li>
+            </ul>
+          </section>
+
+          <div className="d-flex gap-3 flex-wrap"></div>
         </section>
       </main>
     </div>

@@ -1,42 +1,53 @@
-import { FiHeart, FiMessageCircle, FiSend, FiBookmark, FiFlag } from 'react-icons/fi';
-import React from 'react';
-import Card from '../components/Card';
-
-const fotos = [
-  {
-    id: 1,
-    src: '',
-    titulo: 'Nuvens Cumulus',
-    descricao: 'Formação típica de dias quentes e úmidos.'
-  },
-  {
-    id: 2,
-    src: '',
-    titulo: 'Nuvens Cirrus',
-    descricao: 'Altas e delicadas, indicam mudança no tempo.'
-  },
-  {
-    id: 3,
-    src: '',
-    titulo: 'Nuvens Estratocumulus',
-    descricao: 'Cobertura extensa com aparência de colcha de retalhos.', local: 'São Paulo, SP', data: '2024-01-01', tipo: 'Cumulonimbus'
-  }
-];
+import {
+  FiHeart,
+  FiMessageCircle,
+  FiSend,
+  FiBookmark,
+  FiFlag,
+} from "react-icons/fi";
+import React from "react";
+import Card from "../components/Card";
 
 const Galeria = () => {
+  const [fotos, setFotos] = React.useState([]);
+
+  React.useEffect(() => {
+    const fetchFotos = async () => {
+      // Se não houver token, redireciona para login
+
+      try {
+        const resposta = await fetch("http://localhost:3000/api/fotos", {});
+
+        if (!resposta.ok) {
+          throw new Error("Não autorizado");
+        }
+
+        const dados = await resposta.json();
+
+        setFotos(dados.map((foto) => ({
+          src: 'http://localhost:3000'+foto.url,
+          ...foto
+        })));
+      } catch (error) {}
+    };
+    fetchFotos();
+  }, []);
   return (
     <section className="container my-5">
       <h2 className="text-center mb-4 text-primary">Nossa Galeria</h2>
 
       <div className="container mt-4 text-center">
-        <label htmlFor="filter" className="fw-bold" style={{ color: "#4A90E2" }}>
+        <label
+          htmlFor="filter"
+          className="fw-bold"
+          style={{ color: "#4A90E2" }}
+        >
           Filtrar por tipo de nuvem:
         </label>
         <select id="filter" className="form-select d-inline-block w-auto mx-2">
           <option value="all">Todos</option>
-          <option value="Cumulonimbus">Cumulonimbus</option>
-          <option value="Cumulus Congestus">Cumulus Congestus</option>
-          <option value="Altocumulus">Altocumulus</option>
+          <option value="Cumulus">Cumulus</option>
+          <option value="Cirrus">Cirrus</option>
           <option value="Stratocumulus">Stratocumulus</option>
         </select>
 
@@ -50,7 +61,7 @@ const Galeria = () => {
       <section className="container bg-light mt-4 pt-5 rounded-5" id="galeria">
         <div className="row">
           {fotos.map((foto) => (
-            <Card key={foto.id} foto={foto} />
+            <Card key={foto.id} foto={foto} comentarios curtidas  />
           ))}
         </div>
       </section>

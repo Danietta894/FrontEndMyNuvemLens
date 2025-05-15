@@ -7,16 +7,31 @@ const Comentarios = () => {
   const [novoComentario, setNovoComentario] = useState("");
   const [comentarioEditando, setComentarioEditando] = useState(null);
   const [textoEditado, setTextoEditado] = useState("");
+  const [foto, setFoto] = useState(null);
+  const token = localStorage.getItem("token");
 
-  const usuarioId = JSON.parse(
-    atob(localStorage.getItem("token")?.split(".")[1] || "{}")
-  ).id;
+  const usuarioId = token
+    ? JSON.parse(atob(token.split(".")[1] || "{}")).id
+    : null;
 
   useEffect(() => {
+    // Se não houver token, redireciona para login
+    if (!token) {
+      window.location.href = "/login";
+      return;
+    }
     fetch(`http://localhost:3000/api/comentarios?foto_id=${fotoId}`)
       .then((res) => res.json())
       .then((dados) => setComentarios(dados))
       .catch((err) => console.error("Erro ao carregar comentários:", err));
+    fetch(`http://localhost:3000/api/fotos/${fotoId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((dados) => setFoto(dados))
+      .catch((err) => console.error("Erro ao carregar foto:", err));
   }, [fotoId]);
 
   const handleEnviarComentario = async (e) => {
@@ -98,9 +113,16 @@ const Comentarios = () => {
   };
 
   return (
-    <div className="mt-3 w-50">
-      <h5>Comentários</h5>
+    <div className="mt-3 w-50"><div className="container">
+      {foto && (
+        <>
+          <img src={"http://localhost:3000" + foto.url} alt="" />
+          <h4 className="mt-2">{foto.titulo}</h4>
+          <p className="text-muted">{foto.descricao}</p>
 
+        </>
+      )}
+      <h5>Comentários</h5>
       {comentarios.length === 0 ? (
         <p className="text-muted">Nenhum comentário ainda.</p>
       ) : (
@@ -155,7 +177,6 @@ const Comentarios = () => {
           </div>
         ))
       )}
-
       <form onSubmit={handleEnviarComentario} className="mt-3">
         <textarea
           className="form-control mb-2"
@@ -168,6 +189,12 @@ const Comentarios = () => {
           Enviar Comentário
         </button>
       </form>
+      </div>
+      <div className="d-flex justify-content-center mt-3">
+        <a href="/galeria" className="btn btn-primary">
+          Voltar para Galeria
+        </a>
+        </div>
     </div>
   );
 };

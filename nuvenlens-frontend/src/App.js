@@ -15,6 +15,9 @@ import Termos from './pages/Termos';
 import Moderador from './pages/Moderador';
 import EditarPerfil from './pages/Editarperfil';
 import Comentario from "./pages/Comentario";
+import Validacao from "./pages/Validacao";
+
+
 
 //           
 
@@ -38,6 +41,7 @@ function App() {
           <Route path="/moderador" element={<Moderador />} />
           <Route path="/editarperfil" element={<EditarPerfil />} />
           <Route path="/comentario/:id" element={<Comentario />} />
+          <Route path="/validacao" element={<Validacao />} />
         </Routes>
         <Footer /> {}
       </Router>

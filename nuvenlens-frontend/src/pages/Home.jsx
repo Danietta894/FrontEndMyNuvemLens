@@ -1,27 +1,32 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Card from "../components/Card";
 
 export default function Home() {
-  useEffect(() => {
-    fetch("http://localhost:3000/api/fotos")
-      .then((response) => response.json())
-      .then((data) => {
-        const galeria = document.getElementById("galeria-fotos");
-        if (galeria) {
-          galeria.innerHTML = "";
-          data.forEach((foto) => {
-            galeria.innerHTML += `
-              <div class="col-md-4">
-                <div class="gallery-card">
-                  <img src="nuvens/${foto.arquivo}" alt="${foto.descricao}" />
-                </div>
-              </div>
-            `;
-          });
-        }
-      });
-  }, []);
+  const [fotos, setFotos] = useState([]);
 
+  useEffect(() => {
+    const fetchFotos = async () => {
+      // Se não houver token, redireciona para login
+
+      try {
+        const resposta = await fetch("http://localhost:3000/api/fotos", {});
+
+        if (!resposta.ok) {
+          throw new Error("Não autorizado");
+        }
+
+        const dados = await resposta.json();
+
+        setFotos(
+          dados.map((foto) => ({
+            src: "http://localhost:3000" + foto.url,
+            ...foto,
+          }))
+        );
+      } catch (error) {}
+    };
+    fetchFotos();
+  }, []);
   return (
     <>
       <div className="container mt-4 text-center">
@@ -50,35 +55,9 @@ export default function Home() {
           Nossa Galeria
         </h2>
         <div className="row">
-          <Card
-            ocultardenuncias
-            foto={{
-              id: 1,
-              src: "nuvens/nuvem1.jpg",
-              titulo: "Nuvens Cumulus",
-              descricao: "Formação típica de dias quentes e úmidos.",
-            }}
-          />
-          <Card
-            ocultardenuncias
-            curtidas="2"
-            foto={{
-              id: 2,
-              src: "nuvens/nuvem2.jpg",
-              titulo: "Nuvens Cirrus",
-              descricao: "Altas e delicadas, indicam mudança no tempo.",
-            }}
-          />
-          <Card
-            ocultardenuncias
-            foto={{
-              id: 3,
-              src: "nuvens/nuvem3.jpg",
-              titulo: "Nuvens Estratocumulus",
-              descricao:
-                "Cobertura extensa com aparência de colcha de retalhos.",
-            }}
-          />
+          {fotos.map((foto) => (
+            <Card key={foto.id} foto={foto} comentarios curtidas  />
+          ))}
         </div>
       </section>
 
@@ -92,31 +71,34 @@ export default function Home() {
         <div className="row justify-content-center">
           <div className="col-md-4 mb-3">
             <div className="testimonial-card p-4 shadow rounded">
-              <h5>João Silva</h5>
+              <h5>Mariana Ribeiro</h5>
               <p>
-                "Encontrei na NuvemLens uma comunidade incrível! É inspirador
-                ver as nuvens de tantos lugares diferentes e aprender sobre cada
-                tipo com outros entusiastas."
+                Sempre amei fotografar o céu, mas nunca soube exatamente o que
+                estava observando. Com o My NuvenLens, aprendi a identificar
+                tipos de nuvens e ainda compartilho minhas fotos com pessoas que
+                entendem esse amor. É como encontrar uma nova família!{" "}
               </p>
             </div>
           </div>
           <div className="col-md-4 mb-3">
             <div className="testimonial-card p-4 shadow rounded">
-              <h5>Maria Oliveira</h5>
+              <h5>Luiz Fernando</h5>
               <p>
-                "A NuvemLens me inspirou a prestar mais atenção no céu. Antes eu
-                passava despercebida, agora fico encantada com cada nuvem que
-                vejo!"
+                Uso as imagens da comunidade My NuvemLens para enriquecer minhas
+                aulas de geografia e meteorologia. A plataforma se tornou uma
+                ponte entre ciência cidadã e educação, mostrando que todo mundo
+                pode contribuir para a construção do conhecimento.
               </p>
             </div>
           </div>
           <div className="col-md-4 mb-3">
             <div className="testimonial-card p-4 shadow rounded">
-              <h5>Carlos Souza</h5>
+              <h5>Rosa Maria</h5>
               <p>
-                "Sou apaixonado pela natureza e encontrar um espaço como a
-                NuvemLens é um sonho! Me sinto parte de uma comunidade de
-                verdade."
+                Um dia, achei que tinha visto uma nuvem muito rara e postei no
+                My NuvemLens. Em poucas horas, outros usuários me ajudaram a
+                identificar: era uma iridescência! A troca de saberes aqui é
+                incrível, a gente aprende e ensina ao mesmo tempo.
               </p>
             </div>
           </div>

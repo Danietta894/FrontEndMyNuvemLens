@@ -40,7 +40,35 @@ const Perfil = () => {
         navigate("/login"); // Qualquer erro, redireciona
       }
     };
+    const fetchFotos = async () => {
+      const token = localStorage.getItem("token");
 
+      // Se não houver token, redireciona para login
+      if (!token) {
+        navigate("/login");
+        return;
+      }
+
+      try {
+        const resposta = await fetch("http://localhost:3000/api/fotos/eu", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (!resposta.ok) {
+          throw new Error("Não autorizado");
+        }
+
+        const dados = await resposta.json();
+
+        setFotos(dados);
+      } catch (error) {
+        console.error("Erro ao buscar perfil:", error);
+        navigate("/login"); // Qualquer erro, redireciona
+      }
+    };
+    fetchFotos();
     fetchUsuario();
   }, [navigate]);
 
@@ -98,7 +126,7 @@ const Perfil = () => {
             fotos.map((foto, index) => (
               <div className="col-md-4" key={index}>
                 <img
-                  src={foto.url}
+                  src={"http://localhost:3000" + foto.url}
                   alt={`Foto ${index + 1}`}
                   className="img-fluid rounded mb-3"
                 />

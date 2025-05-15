@@ -11,7 +11,7 @@ function Navbar() {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark">
       <div className="container">
-        <a className="navbar-brand fw-bold" href="/">
+        <a className="navbar-brand fw-bold nome-site" href="/">
           My <span className="text-light">NuvemLens</span>
         </a>
         <button
@@ -51,7 +51,9 @@ function Navbar() {
                 </a>
               </li>
             ) : null} 
-            <li className="nav-item">
+            <li className="nav-item ">
+              <span>
+
               {isLoggedIn ? (
                 <button className="btn btn-danger" onClick={handleLogout}>
                   Logout
@@ -61,6 +63,7 @@ function Navbar() {
                   Login
                 </button>
               )}
+              </span>
             </li>
           </ul>
         </div>

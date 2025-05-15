@@ -30,14 +30,29 @@ export default function UploadContato() {
     }).addTo(map);
 
     let marker;
-    map.on("click", function (e) {
+    map.on("click", async function (e) {
       if (marker) map.removeLayer(marker);
       marker = L.marker(e.latlng).addTo(map);
       document.getElementById("latitude").value = e.latlng.lat;
       document.getElementById("longitude").value = e.latlng.lng;
-      document.getElementById(
-        "location"
-      ).value = `Latitude: ${e.latlng.lat}, Longitude: ${e.latlng.lng}`;
+
+      const lat = e.latlng.lat;
+      const lon = e.latlng.lng;
+
+      // Chamada à API Nominatim para geocodificação reversa
+      const response = await fetch(
+        `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`
+      );
+      const data = await response.json();
+
+      // Atualiza o campo de localização com nome da cidade
+      const cidade =
+        data.address.city ||
+        data.address.town ||
+        data.address.village ||
+        data.address.municipality ||
+        data.display_name;
+      document.getElementById("location").value = cidade;
 
       fetch(
         `https://api.openweathermap.org/data/2.5/weather?lat=${e.latlng.lat}&lon=${e.latlng.lng}&appid=${apiKey}&units=metric&lang=pt_br`
@@ -64,14 +79,16 @@ export default function UploadContato() {
       data: document.getElementById("date").value,
       descricao: document.getElementById("description").value,
     };
+    console.log(dados, document.getElementById("latitude"));
 
     const formData = new FormData();
     formData.append("imagem", dados.imagem);
-    formData.append("tipo", dados.local);
     formData.append("latitude", dados.latitude);
     formData.append("longitude", dados.longitude);
     formData.append("data", dados.data);
     formData.append("descricao", dados.descricao);
+    formData.append("localizacao", dados.local);
+    formData.append("fotografado_em", dados.data);
 
     const token = localStorage.getItem("token");
 
@@ -127,7 +144,8 @@ export default function UploadContato() {
               type="text"
               className="form-control"
               id="location"
-              placeholder="Digite o local ou clique no mapa"
+              placeholder="clique no mapa e escolha o local"
+              readOnly
               required
             />
           </div>
@@ -140,7 +158,7 @@ export default function UploadContato() {
           ></div>
           <div className="mb-3">
             <label htmlFor="date" className="form-label">
-              Data e Hora da Captura
+              Fotografado em
             </label>
             <input
               type="datetime-local"
