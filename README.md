@@ -9,7 +9,7 @@ API desenvolvida para gerenciamento de fotos, usuários, comentários e pedidos 
 -  Cadastro e gerenciamento de usuários
 -  Sistema de comentários nas fotos
 -  Curtidas nas fotos
--  Cadastro 
+-  Cadastro e gerenciamento de produtos e pedidos
 -  Autenticação com JWT
 -  Upload de imagens
 
@@ -30,10 +30,11 @@ API desenvolvida para gerenciamento de fotos, usuários, comentários e pedidos 
 
 ###  Passos:
 
-1. Clone o repositório:
+1. Clone os repositórios:
 
 ```bash
 git clone https://github.com/Danietta894/API.git
+git clone https://github.com/Danietta894/mynuvemlens.git
 ```
 
 2. Instale as dependências:
@@ -71,9 +72,9 @@ O servidor estará rodando em: `http://localhost:3000`.
 
 Foram realizados os seguintes testes:
 
--  Testes unitários: funções de validação e regras de negócio.
--  Testes de integração: testes nas rotas principais (fotos, comentários e usuários).
--  Testes de aceitação: realizados manualmente utilizando o Postman, simulando o funcionamento da API.
+- ✔ Testes unitários: funções de validação e regras de negócio.
+- ✔ Testes de integração: testes nas rotas principais (fotos, comentários e usuários).
+- ✔ Testes de aceitação: realizados manualmente utilizando o Postman, simulando o funcionamento da API.
 
 ##  Rotas principais
 
@@ -88,11 +89,11 @@ Foram realizados os seguintes testes:
 
 E outras rotas disponíveis para usuários, pedidos, curtidas e produtos.
 
-##  Demonstração
+  Demonstração
 
- Link para o vídeo demonstrando a API funcionando: [Assista aqui](https://drive.google.com/drive/folders/1v2yOq2h7IxqkmguCXe9tFR3N6VZ1_VVB?usp=drive_link)
+ Link para o vídeo demonstrando a API funcionando: [Acessar Demo](https://drive.google.com/drive/folders/1v2yOq2h7IxqkmguCXe9tFR3N6VZ1_VVB?sort=13&direction=a)
 
-##  Desenvolvedora
+  Desenvolvedora
 
 - **Daniella Nunes Tenório**  
 [GitHub](https://github.com/Danietta894)
@@ -100,3 +101,4 @@ E outras rotas disponíveis para usuários, pedidos, curtidas e produtos.
 ##  Licença
 
 Este projeto está sob a licença MIT.
+
