@@ -53,14 +53,7 @@ DB_DATABASE=nome_do_banco
 JWT_SECRET=sua_secret
 ```
 
-4. Crie o banco no MySQL e execute (se estiver usando Sequelize CLI):
-
-```bash
-npx sequelize-cli db:create
-npx sequelize-cli db:migrate
-```
-
-5. Execute o projeto:
+4. Execute o projeto:
 
 ```bash
 npm start
