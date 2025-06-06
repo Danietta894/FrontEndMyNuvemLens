@@ -1,40 +1,42 @@
+# Frontend - My NuvemLens
 
-#  API My NuvemLens
+Este repositório contém o frontend da plataforma **My NuvemLens**, um sistema colaborativo para observação, registro e compartilhamento de nuvens com dados meteorológicos em tempo real.
 
-API desenvolvida para gerenciamento de fotos, usuários, comentários e pedidos na plataforma **My NuvemLens**.
+## Sobre o Projeto
 
-##  Funcionalidades
+A My NuvemLens permite que usuários façam upload de imagens de nuvens, vejam informações climáticas no momento do registro e interajam com uma galeria pública com curtidas, comentários e denúncias. A proposta une tecnologia, ciência cidadã e educação ambiental.
 
--  Cadastro, listagem e busca de fotos
--  Cadastro e gerenciamento de usuários
--  Sistema de comentários nas fotos
--  Curtidas nas fotos
--  Cadastro e gerenciamento de produtos e pedidos
--  Autenticação com JWT
--  Upload de imagens
+## Funcionalidades
 
-##  Tecnologias Utilizadas
+- Upload de imagens com tipo de nuvem, localização e clima automático
+- Galeria pública com filtros por tipo de nuvem
+- Autenticação via Google e e-mail
+- Perfis de usuário com histórico de uploads
+- Interação com curtidas, comentários e denúncias
+- Painel de moderação para validar imagens
 
-- Node.js
-- Express
-- MySQL + Sequelize ORM
-- JWT (Autenticação)
-- Multer (Upload de imagens)
-- Jest (Testes automatizados)
+## Tecnologias Utilizadas
 
-##  Como executar o projeto
+- React  
+- React Router  
+- Axios (requisições HTTP)  
+- Tailwind CSS  
+- OpenWeatherMap API (clima em tempo real)  
+- Google OAuth 2.0 (login social)
 
-###  Pré-requisitos:
+## Como Executar o Projeto
+
+### Pré-requisitos:
 - Node.js instalado
-- MySQL rodando na sua máquina
+- API (backend) rodando localmente ou hospedada
 
-###  Passos:
+### Passos:
 
-1. Clone os repositórios:
+1. Clone este repositório:
 
 ```bash
-git clone https://github.com/Danietta894/API.git
 git clone https://github.com/Danietta894/mynuvemlens.git
+cd mynuvemlens
 ```
 
 2. Instale as dependências:
@@ -43,14 +45,11 @@ git clone https://github.com/Danietta894/mynuvemlens.git
 npm install
 ```
 
-3. Configure o arquivo `.env` com suas informações:
+3. Crie um arquivo `.env` e configure a URL da API:
 
 ```env
-DB_HOST=localhost
-DB_USER=seu_usuario
-DB_PASSWORD=sua_senha
-DB_DATABASE=nome_do_banco
-JWT_SECRET=sua_secret
+REACT_APP_API_URL=http://localhost:3000
+REACT_APP_GOOGLE_CLIENT_ID=seu_client_id_google
 ```
 
 4. Execute o projeto:
@@ -59,39 +58,30 @@ JWT_SECRET=sua_secret
 npm start
 ```
 
-O servidor estará rodando em: `http://localhost:3000`.
+O frontend estará acessível em: `http://localhost:5173` (ou `http://localhost:3000`, dependendo da porta configurada).
 
-##  Testes
+## Testes
 
-Foram realizados os seguintes testes:
+- Testes manuais de usabilidade e fluxo com diferentes perfis
+- Upload de imagens simuladas com API de clima integrada
+- Navegação e filtros testados em diferentes resoluções (responsividade)
 
-- ✔ Testes unitários: funções de validação e regras de negócio.
-- ✔ Testes de integração: testes nas rotas principais (fotos, comentários e usuários).
-- ✔ Testes de aceitação: realizados manualmente utilizando o Postman, simulando o funcionamento da API.
+## Backend
 
-##  Rotas principais
+A API (backend) está disponível neste repositório:  
+ [API - My NuvemLens](https://github.com/Danietta894/API)
 
-| Método | Endpoint             | Descrição                |
-|--------|-----------------------|--------------------------|
-| POST   | `/api/auth/login`     | Login do usuário         |
-| POST   | `/api/fotos`          | Cadastrar foto           |
-| GET    | `/api/fotos`          | Listar fotos             |
-| POST   | `/api/comentarios`    | Cadastrar comentário     |
-| GET    | `/api/comentarios`    | Listar comentários       |
-| POST   | `/api/auth/register`  | Cadastro de usuário      |
+## Demonstração
 
-E outras rotas disponíveis para usuários, pedidos, curtidas e produtos.
+Confira o vídeo da aplicação em funcionamento:  
+🎥 [Acessar no Google Drive](https://drive.google.com/drive/folders/1v2yOq2h7IxqkmguCXe9tFR3N6VZ1_VVB?sort=13&direction=a)
 
-  Demonstração
-
- Link para o vídeo demonstrando a API funcionando: [Acessar Demo](https://drive.google.com/drive/folders/1v2yOq2h7IxqkmguCXe9tFR3N6VZ1_VVB?sort=13&direction=a)
-
-  Desenvolvedora
+## Desenvolvedora
 
 - **Daniella Nunes Tenório**  
 [GitHub](https://github.com/Danietta894)
 
-##  Licença
+## Licença
 
-Este projeto está sob a licença MIT.
+Este projeto está licenciado sob a Licença MIT.
 
