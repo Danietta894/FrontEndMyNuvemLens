@@ -16,6 +16,11 @@ import Moderador from './pages/Moderador';
 import EditarPerfil from './pages/Editarperfil';
 import Comentario from "./pages/Comentario";
 import Validacao from "./pages/Validacao";
+import LoginSuccess from "./pages/LoginSuccess";
+import ProtectedRoute from "./components/ProtectedRoute";
+import LoginCallback from "./pages/LoginCallback";
+
+
 
 
 
@@ -42,6 +47,10 @@ function App() {
           <Route path="/editarperfil" element={<EditarPerfil />} />
           <Route path="/comentario/:id" element={<Comentario />} />
           <Route path="/validacao" element={<Validacao />} />
+          <Route path="/login-success" element={<LoginSuccess />} />
+          <Route path="/galeria/:id" element={<ProtectedRoute> <Comentario /></ProtectedRoute> }/>
+          <Route path="/login-callback" element={<LoginCallback />} />
+
         </Routes>
         <Footer /> {}
       </Router>

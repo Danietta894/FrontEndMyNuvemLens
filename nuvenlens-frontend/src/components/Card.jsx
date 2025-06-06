@@ -78,9 +78,9 @@ export default function Card({
             <p className="mb-0">{foto.local}</p>
             <p className="mb-0">{foto.data}</p>
           </div>
-          {foto.autor && (
+          {foto.nome_usuario && (
             <div className="author-info">
-              <p className="mb-0">©{foto.autor}</p>
+              <strong>Enviado por:</strong> {foto.nome_usuario}
             </div>
           )}
 

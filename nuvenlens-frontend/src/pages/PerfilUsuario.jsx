@@ -5,6 +5,9 @@ const Perfil = () => {
   const [usuario, setUsuario] = useState(null);
   const [fotos, setFotos] = useState([]);
   const navigate = useNavigate();
+  const [fotosPendentes, setFotosPendentes] = useState([]);
+
+  
 
   useEffect(() => {
     const fetchUsuario = async () => {
@@ -38,6 +41,29 @@ const Perfil = () => {
       } catch (error) {
         console.error("Erro ao buscar perfil:", error);
         navigate("/login"); // Qualquer erro, redireciona
+      }
+
+      try {
+        const resposta = await fetch(
+          "http://localhost:3000/api/fotos/pendentes/eu",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+
+        if (!resposta.ok) {
+          throw new Error("Não autorizado");
+        }
+
+        const dados = await resposta.json();
+
+        setFotosPendentes(dados);
+        // setFotos(dados.fotos || []);
+      } catch (error) {
+        console.error("Erro ao buscar perfil:", error);
+        // navigate("/login"); // Qualquer erro, redireciona
       }
     };
     const fetchFotos = async () => {
@@ -124,6 +150,25 @@ const Perfil = () => {
         <div className="row">
           {fotos.length > 0 ? (
             fotos.map((foto, index) => (
+              <div className="col-md-4" key={index}>
+                <img
+                  src={"http://localhost:3000" + foto.url}
+                  alt={`Foto ${index + 1}`}
+                  className="img-fluid rounded mb-3"
+                />
+              </div>
+            ))
+          ) : (
+            <p className="text-muted">Nenhuma foto enviada ainda.</p>
+          )}
+        </div>
+      </section>
+
+      <section className="container photos-section bg-white rounded shadow p-4 mt-4">
+        <h3 className="text-primary">Aguardando Aprovação</h3>
+        <div className="row">
+          {fotosPendentes.length > 0 ? (
+            fotosPendentes.map((foto, index) => (
               <div className="col-md-4" key={index}>
                 <img
                   src={"http://localhost:3000" + foto.url}

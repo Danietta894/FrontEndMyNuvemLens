@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 const ValidacoesPage = () => {
   const [imagens, setImagens] = useState([]);
+  const [tipodigitado, setTipoDigitado] = useState("");
   const token = localStorage.getItem("token");
   // Buscar imagens pendentes
   useEffect(() => {
@@ -16,10 +17,12 @@ const ValidacoesPage = () => {
   }, []);
 
   // Aprovar imagem
-  const aprovarImagem = (id) => {
+  const aprovarImagem = (id, tipo) => {
     fetch(`http://localhost:3000/api/imagens/${id}/aprovar`, {
       method: "POST",
-      headers: {
+      body: JSON.stringify({ tipo}),
+      headers: { 
+        "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
     })
@@ -64,16 +67,29 @@ const ValidacoesPage = () => {
                 src={`http://localhost:3000${img.url}`}
                 alt="Imagem de nuvem"
               />
-              <p>
-                <strong>Tipo sugerido:</strong> {img.tipo_sugerido}
-              </p>
-              <p>
-                <strong>Usuário:</strong> {img.usuario_nome}
-              </p>
+              <div>
+                <label>
+                  <strong>Definir tipo de nuvem:</strong>
+                  <p>
+                   
+                  </p>
+                </label>
+                <input
+                  type="text"
+                  placeholder="Digite o tipo de nuvem"
+                  value={tipodigitado}
+                  onChange={(e) => setTipoDigitado(e.target.value)}
+                />
+              </div>
+
+              <div>
+                <strog>Uusuário:</strog> {img.usuario}
+              </div>
+
               <div className="botoes">
                 <button
                   className="aprovar"
-                  onClick={() => aprovarImagem(img.id)}
+                  onClick={() => aprovarImagem(img.id, tipodigitado)}
                 >
                   ✅ Aprovar
                 </button>

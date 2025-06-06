@@ -104,6 +104,8 @@ export default function UploadContato() {
       .then((data) => {
         console.log("Sucesso:", data);
         alert("Imagem enviada com sucesso!");
+        // Redireciona para a página de visualização ou outra ação
+        window.location.href = "/perfilUsuario";
       })
       .catch((error) => {
         console.error("Erro:", error);
@@ -218,6 +220,12 @@ export default function UploadContato() {
           </button>
         </form>
       </section>
+      {weather && (
+        <section className="container my-5 container-transparent">
+          <h2>Previsão do Tempo</h2>
+          <p>{weather}</p>
+        </section>
+      )}
     </div>
   );
 }

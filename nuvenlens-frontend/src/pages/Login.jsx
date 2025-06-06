@@ -136,14 +136,17 @@ const Login = () => {
             height="90"
           />
         </div>
-        <h5>Bem-vindo(a) à NuvemLens</h5>
+        <h5>Bem-vindo(a) à My NuvemLens</h5>
         <p style={{ fontSize: "14px" }}>
           Faça login para acessar ou cadastre-se para começar sua jornada com as
           nuvens!
         </p>
 
         {/* Botões sociais (opcional) */}
-        <button className="btn btn-social btn-google mb-2">
+        <a
+          href="http://localhost:3000/api/auth/google"
+          className="btn btn-social btn-google mb-2"
+        >
           <img
             src="nuvens/Google__G__logo.svg.png"
             alt="Google"
@@ -151,7 +154,7 @@ const Login = () => {
             className="me-2"
           />
           Entrar com Google
-        </button>
+        </a>
         <button
           className="btn btn-social btn-facebook mb-2 text-white"
           style={{ backgroundColor: "#1877f2" }}
@@ -336,7 +339,7 @@ const Login = () => {
 
         {/* Seção informativa */}
         <div className="info-section text-start mt-3 small text-muted">
-          <h6>Por que usar o NuvemLens?</h6>
+          <h6>Por que usar o My NuvemLens?</h6>
           <ul>
             <li>Compartilhe suas fotos de nuvens com a comunidade.</li>
             <li>Explore padrões meteorológicos únicos.</li>
