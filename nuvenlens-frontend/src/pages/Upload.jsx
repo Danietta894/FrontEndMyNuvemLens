@@ -12,7 +12,7 @@ export default function UploadContato() {
   useEffect(() => {
     const token = localStorage.getItem("token");
 
-    // Se não houver token, redireciona para login
+    
     if (!token) {
       navigate("/login");
       return;
@@ -39,13 +39,13 @@ export default function UploadContato() {
       const lat = e.latlng.lat;
       const lon = e.latlng.lng;
 
-      // Chamada à API Nominatim para geocodificação reversa
+    
       const response = await fetch(
         `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`
       );
       const data = await response.json();
 
-      // Atualiza o campo de localização com nome da cidade
+      
       const cidade =
         data.address.city ||
         data.address.town ||
@@ -70,7 +70,7 @@ export default function UploadContato() {
   }, []);
 
   function handleSubmit(event) {
-    event.preventDefault(); // Previne o comportamento padrão do formulário
+    event.preventDefault(); 
     const dados = {
       imagem: document.querySelector('input[name="imagem"]').files[0],
       local: document.getElementById("location").value,
@@ -92,7 +92,7 @@ export default function UploadContato() {
 
     const token = localStorage.getItem("token");
 
-    // Aqui você pode enviar os dados para o servidor usando fetch ou axios
+    
     fetch("http://localhost:3000/api/fotos", {
       method: "POST",
       body: formData,
@@ -104,7 +104,7 @@ export default function UploadContato() {
       .then((data) => {
         console.log("Sucesso:", data);
         alert("Imagem enviada com sucesso!");
-        // Redireciona para a página de visualização ou outra ação
+        
         window.location.href = "/perfilUsuario";
       })
       .catch((error) => {

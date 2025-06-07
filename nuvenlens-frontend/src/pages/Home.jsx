@@ -3,30 +3,52 @@ import Card from "../components/Card";
 
 export default function Home() {
   const [fotos, setFotos] = useState([]);
+  const [paginaAtual, setPaginaAtual] = useState(1);
+  const fotosPorPagina = 3;
+  const [temProximaPagina, setTemProximaPagina] = useState(false);
+  const [temPaginaAnterior, setTemPaginaAnterior] = useState(false);
+  const [tipoSelecionado, setTipoSelecionado] = useState("");
+
+  const fetchFotos = async (pagina, tipo) => {
+    try {
+      const resposta = await fetch(
+        `http://localhost:3000/api/fotos?pagina=${pagina}&limite=${fotosPorPagina}&tipo=${tipo}`
+      );
+
+      if (!resposta.ok) {
+        throw new Error("Não autorizado");
+      }
+
+      const dados = await resposta.json();
+      setTemProximaPagina(dados.length === fotosPorPagina);
+      setTemPaginaAnterior(paginaAtual > 1);
+
+      setFotos(
+        dados.map((foto) => ({
+          src: "http://localhost:3000" + foto.url,
+          ...foto,
+        }))
+      );
+    } catch (error) {}
+  };
+  useEffect(() => {
+    fetchFotos(paginaAtual, tipoSelecionado);
+  }, [paginaAtual, tipoSelecionado]);
 
   useEffect(() => {
-    const fetchFotos = async () => {
-      // Se não houver token, redireciona para login
+    setFotos([]);
+    setPaginaAtual(1);
+    setTemProximaPagina(true);
+  }, [tipoSelecionado]);
 
-      try {
-        const resposta = await fetch("http://localhost:3000/api/fotos", {});
+  const irParaAnterior = () => {
+    setPaginaAtual((pagina) => pagina - 1);
+  };
 
-        if (!resposta.ok) {
-          throw new Error("Não autorizado");
-        }
+  const irParaProxima = () => {
+    setPaginaAtual((pagina) => pagina + 1);
+  };
 
-        const dados = await resposta.json();
-
-        setFotos(
-          dados.map((foto) => ({
-            src: "http://localhost:3000" + foto.url,
-            ...foto,
-          }))
-        );
-      } catch (error) {}
-    };
-    fetchFotos();
-  }, []);
   return (
     <>
       <div className="container mt-4 text-center">
@@ -37,12 +59,31 @@ export default function Home() {
         >
           Filtrar por tipo de nuvem:
         </label>
-        <select id="filter" className="form-select d-inline-block w-auto mx-2">
-          <option value="all">Todos</option>
-          <option value="Cumulonimbus">Cumulonimbus</option>
-          <option value="Cumulus Congestus">Cumulus Congestus</option>
-          <option value="Altocumulus">Altocumulus</option>
-          <option value="Stratocumulus">Stratocumulus</option>
+        <select id="filter" className="form-select d-inline-block w-auto mx-2" onChange={(e) => setTipoSelecionado(e.target.value)}>
+          <option value="">Todos</option>
+
+          <optgroup label="Altas">
+            <option value="Cirrus">Cirrus</option>
+            <option value="Cirrostratus">Cirrostratus</option>
+            <option value="Cirrocumulus">Cirrocumulus</option>
+          </optgroup>
+
+          <optgroup label="Médias">
+            <option value="Altostratus">Altostratus</option>
+            <option value="Altocumulus">Altocumulus</option>
+          </optgroup>
+
+          <optgroup label="Baixas">
+            <option value="Stratus">Stratus</option>
+            <option value="Stratocumulus">Stratocumulus</option>
+            <option value="Nimbostratus">Nimbostratus</option>
+          </optgroup>
+
+          <optgroup label="Desenvolvimento vertical">
+            <option value="Cumulus">Cumulus</option>
+            <option value="Cumulus Congestus">Cumulus Congestus</option>
+            <option value="Cumulonimbus">Cumulonimbus</option>
+          </optgroup>
         </select>
         <div className="upload-button d-inline-block">
           <a href="/upload" className="btn btn-success rounded-pill">
@@ -56,8 +97,27 @@ export default function Home() {
         </h2>
         <div className="row">
           {fotos.map((foto) => (
-            <Card key={foto.id} foto={foto} comentarios curtidas  />
+            <Card key={foto.id} foto={foto} comentarios curtidas />
           ))}
+        </div>
+
+        <div className="text-center mt-4">
+          {temPaginaAnterior && (
+            <button
+              onClick={() => irParaAnterior()}
+              className="btn btn-outline-primary me-2"
+            >
+              Anterior
+            </button>
+          )}
+          {temProximaPagina && (
+            <button
+              onClick={() => irParaProxima()}
+              className="btn btn-outline-primary ms-2"
+            >
+              Próxima
+            </button>
+          )}
         </div>
       </section>
 

@@ -14,8 +14,6 @@ function LoginSuccess() {
       localStorage.setItem("name", name);
       window.location.href = "/perfilUsuario";
     } else {
-      // alert("Erro no login!");
-      // navigate("/login");
     }
   }, [navigate]);
 

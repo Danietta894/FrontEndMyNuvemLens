@@ -15,7 +15,7 @@ const Comentarios = () => {
     : null;
 
   useEffect(() => {
-    // Se não houver token, redireciona para login
+    
     if (!token) {
       window.location.href = "/login";
       return;

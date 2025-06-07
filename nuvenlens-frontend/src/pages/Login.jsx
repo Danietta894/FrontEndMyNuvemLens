@@ -142,7 +142,6 @@ const Login = () => {
           nuvens!
         </p>
 
-        {/* Botões sociais (opcional) */}
         <a
           href="http://localhost:3000/api/auth/google"
           className="btn btn-social btn-google mb-2"
@@ -208,7 +207,7 @@ const Login = () => {
           </li>
         </ul>
 
-        {/* Formulário de Login */}
+   
         {activeTab === "login" && !mostrarEsqueciSenha && (
           <form onSubmit={handleLogin}>
             {sucessoLogin && (
@@ -252,7 +251,6 @@ const Login = () => {
           </form>
         )}
 
-        {/* Formulário de Esqueci Senha */}
         {activeTab === "login" && mostrarEsqueciSenha && (
           <form onSubmit={handleEsqueciSenha}>
             <h6 className="mb-3">Recuperar Senha</h6>
@@ -288,7 +286,6 @@ const Login = () => {
           </form>
         )}
 
-        {/* Formulário de Cadastro */}
         {activeTab === "signup" && (
           <form onSubmit={handleCadastro}>
             {erroCadastro && (
@@ -337,7 +334,6 @@ const Login = () => {
           </form>
         )}
 
-        {/* Seção informativa */}
         <div className="info-section text-start mt-3 small text-muted">
           <h6>Por que usar o My NuvemLens?</h6>
           <ul>

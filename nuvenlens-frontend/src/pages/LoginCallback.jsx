@@ -11,14 +11,14 @@ function LoginCallback() {
     const name = urlParams.get("name");
 
     if (token) {
-      // Salvar no localStorage (ou Context, Redux, etc.)
+      
       localStorage.setItem("token", token);
       localStorage.setItem("name", name);
       console.log(token);
 
       alert(`Seja bem-vindo(a), ${name}!`);
 
-      // Redireciona para a galeria, perfil ou onde desejar
+     
       navigate("/galeria");
     } else {
       alert("Erro ao realizar login.");

@@ -13,7 +13,7 @@ const Perfil = () => {
     const fetchUsuario = async () => {
       const token = localStorage.getItem("token");
 
-      // Se não houver token, redireciona para login
+   
       if (!token) {
         navigate("/login");
         return;
@@ -37,10 +37,10 @@ const Perfil = () => {
         if (dados.perfil_id == 4) window.location.href = "/moderador";
 
         setUsuario(dados);
-        // setFotos(dados.fotos || []);
+       
       } catch (error) {
         console.error("Erro ao buscar perfil:", error);
-        navigate("/login"); // Qualquer erro, redireciona
+        navigate("/login"); 
       }
 
       try {
@@ -60,16 +60,16 @@ const Perfil = () => {
         const dados = await resposta.json();
 
         setFotosPendentes(dados);
-        // setFotos(dados.fotos || []);
+        
       } catch (error) {
         console.error("Erro ao buscar perfil:", error);
-        // navigate("/login"); // Qualquer erro, redireciona
+        
       }
     };
     const fetchFotos = async () => {
       const token = localStorage.getItem("token");
 
-      // Se não houver token, redireciona para login
+      
       if (!token) {
         navigate("/login");
         return;

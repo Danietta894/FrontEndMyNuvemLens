@@ -92,11 +92,11 @@ const ModeradorPerfil = () => {
           <p>Aqui estão algumas das suas últimas atividades como moderador:</p>
           <ul class="atividades">
             <li>
-              ✔️ Aprovou a imagem ID #241{" "}
+               Aprovou a imagem ID #241{" "}
               <span class="data">em 14/05/2025 16:21</span>
             </li>
             <li>
-              🚫 Removeu um comentário ofensivo{" "}
+               Removeu um comentário ofensivo{" "}
               <span class="data">em 13/05/2025</span>
             </li>
           </ul>
@@ -119,9 +119,9 @@ const ModeradorPerfil = () => {
             <h3 className="text-primary">Permissões</h3>
 
             <ul>
-              <li>✅ Pode aprovar ou recusar imagens</li>
-              <li>🗨️ Pode moderar comentários</li>
-              <li>🚨 Pode acessar denúncias</li>
+              <li> Pode aprovar ou recusar imagens</li>
+              <li> Pode moderar comentários</li>
+              <li> Pode acessar denúncias</li>
             </ul>
           </section>
 

@@ -4,7 +4,7 @@ const ValidacoesPage = () => {
   const [imagens, setImagens] = useState([]);
   const [tipodigitado, setTipoDigitado] = useState("");
   const token = localStorage.getItem("token");
-  // Buscar imagens pendentes
+
   useEffect(() => {
     fetch("http://localhost:3000/api/imagens/pendentes", {
       headers: {
@@ -16,12 +16,11 @@ const ValidacoesPage = () => {
       .catch((err) => console.error("Erro ao carregar imagens:", err));
   }, []);
 
-  // Aprovar imagem
   const aprovarImagem = (id, tipo) => {
     fetch(`http://localhost:3000/api/imagens/${id}/aprovar`, {
       method: "POST",
-      body: JSON.stringify({ tipo}),
-      headers: { 
+      body: JSON.stringify({ tipo }),
+      headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
@@ -36,7 +35,6 @@ const ValidacoesPage = () => {
       .catch((err) => console.error("Erro ao aprovar imagem:", err));
   };
 
-  // Recusar imagem
   const recusarImagem = (id) => {
     fetch(`http://localhost:3000/api/imagens/${id}/recusar`, {
       method: "POST",
@@ -70,16 +68,41 @@ const ValidacoesPage = () => {
               <div>
                 <label>
                   <strong>Definir tipo de nuvem:</strong>
-                  <p>
-                   
-                  </p>
+                  <select
+                    id="filter"
+                    className="form-select d-inline-block w-auto mx-2"
+                    onChange={(e) => setTipoDigitado(e.target.value)}
+                    value={tipodigitado}
+                  >
+                    <option value="all">Todos</option>
+
+                    <optgroup label="Altas">
+                      <option value="Cirrus">Cirrus</option>
+                      <option value="Cirrostratus">Cirrostratus</option>
+                      <option value="Cirrocumulus">Cirrocumulus</option>
+                    </optgroup>
+
+                    <optgroup label="Médias">
+                      <option value="Altostratus">Altostratus</option>
+                      <option value="Altocumulus">Altocumulus</option>
+                    </optgroup>
+
+                    <optgroup label="Baixas">
+                      <option value="Stratus">Stratus</option>
+                      <option value="Stratocumulus">Stratocumulus</option>
+                      <option value="Nimbostratus">Nimbostratus</option>
+                    </optgroup>
+
+                    <optgroup label="Desenvolvimento vertical">
+                      <option value="Cumulus">Cumulus</option>
+                      <option value="Cumulus Congestus">
+                        Cumulus Congestus
+                      </option>
+                      <option value="Cumulonimbus">Cumulonimbus</option>
+                    </optgroup>
+                  </select>
+                  <p></p>
                 </label>
-                <input
-                  type="text"
-                  placeholder="Digite o tipo de nuvem"
-                  value={tipodigitado}
-                  onChange={(e) => setTipoDigitado(e.target.value)}
-                />
               </div>
 
               <div>
@@ -91,13 +114,13 @@ const ValidacoesPage = () => {
                   className="aprovar"
                   onClick={() => aprovarImagem(img.id, tipodigitado)}
                 >
-                  ✅ Aprovar
+                  Aprovar
                 </button>
                 <button
                   className="recusar"
                   onClick={() => recusarImagem(img.id)}
                 >
-                  ❌ Recusar
+                  Recusar
                 </button>
               </div>
             </div>

@@ -1,13 +1,12 @@
-// components/Navbar.jsx
 import { Link } from "react-router-dom";
-import "./Navbar.css"; // Import your CSS file for styling
+import "./Navbar.css"; 
 
 function Navbar() {
   const handleLogout = () => {
     localStorage.removeItem("token");
-    window.location.href = "/login"; // Redireciona para a página de login após logout
+    window.location.href = "/login"; 
   };
-  const isLoggedIn = localStorage.getItem("token") !== null; // Verifica se o usuário está logado
+  const isLoggedIn = localStorage.getItem("token") !== null; 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark">
       <div className="container">
