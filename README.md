@@ -35,8 +35,8 @@ A My NuvemLens permite que usuários façam upload de imagens de nuvens, vejam i
 1. Clone este repositório:
 
 ```bash
-git clone https://github.com/Danietta894/mynuvemlens.git
-cd mynuvemlens
+git clone https://github.com/Danietta894/FrontEndMyNuvemLens.git
+cd FrontEndMyNuvemLens
 ```
 
 2. Instale as dependências:
@@ -69,12 +69,12 @@ O frontend estará acessível em: `http://localhost:5173` (ou `http://localhost:
 ## Backend
 
 A API (backend) está disponível neste repositório:  
- [API - My NuvemLens](https://github.com/Danietta894/API)
+ [API - My NuvemLens](https://github.com/Danietta894/BackEndMyNuvemLens)
 
 ## Demonstração
 
 Confira o vídeo da aplicação em funcionamento:  
-🎥 [Acessar no Google Drive](https://drive.google.com/drive/folders/1v2yOq2h7IxqkmguCXe9tFR3N6VZ1_VVB?sort=13&direction=a)
+ [Acessar no Google Drive](https://drive.google.com/drive/folders/1v2yOq2h7IxqkmguCXe9tFR3N6VZ1_VVB?sort=13&direction=a)
 
 ## Desenvolvedora
 
