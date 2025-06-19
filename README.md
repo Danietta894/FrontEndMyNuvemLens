@@ -19,9 +19,9 @@ A My NuvemLens permite que usuários façam upload de imagens de nuvens, vejam i
 
 - React  
 - React Router  
-- Axios (requisições HTTP)  
-- Tailwind CSS  
-- OpenWeatherMap API (clima em tempo real)  
+- Fetch (requisições HTTP)  
+- CSS  
+- OpenWeatherMap API (clima em tempo real) 
 - Google OAuth 2.0 (login social)
 
 ## Como Executar o Projeto
